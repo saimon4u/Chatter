@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="325dp"
+    android:layout_height="234dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_margin="13dp"
+    android:background="@drawable/shape_dialog">
+
+
+    <TextView
+        android:id="@+id/fixedValue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:text="Enter a new User Name"
+        android:textSize="@dimen/_20sdp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <EditText
+        android:id="@+id/value"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:hint="Enter changes here..."
+        android:background="@drawable/home_search_bg"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/enterBtn"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:text="Enter"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:backgroundTint="#D00C0C"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:text="Cancel"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/black"
+            android:backgroundTint="#00FF00"
+            style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
+
+
+</LinearLayout>
