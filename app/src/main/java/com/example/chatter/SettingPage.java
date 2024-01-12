@@ -331,6 +331,9 @@ public class SettingPage extends AppCompatActivity {
                                     });
                                 }
                             });
+                            if (!task.isSuccessful()){
+                                Log.d("TAG", "onComplete: ol");
+                            }
                         }
                     });
                 }
@@ -388,5 +391,17 @@ public class SettingPage extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Chatter.setAppForeground(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Chatter.setAppForeground(true);
     }
 }

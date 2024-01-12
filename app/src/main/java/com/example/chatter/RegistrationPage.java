@@ -3,10 +3,13 @@ package com.example.chatter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +44,7 @@ public class RegistrationPage extends AppCompatActivity {
     String imageLink;
     private CircleImageView imgIcon;
     private Date date;
+    private android.app.ProgressDialog progressDialog;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,10 @@ public class RegistrationPage extends AppCompatActivity {
         signIn = findViewById(R.id.reg_sign_in_btn);
         imgIcon = findViewById(R.id.profileImg);
         submitBtn = findViewById(R.id.reg_submit_btn);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please Wait....");
+        progressDialog.setCancelable(false);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +108,7 @@ public class RegistrationPage extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                progressDialog.show();
                                 String id = task.getResult().getUser().getUid();
                                 DatabaseReference reference = database.getReference().child("user").child(id);
                                 StorageReference storageReference = storage.getReference().child("Upload").child(id);
@@ -117,6 +126,7 @@ public class RegistrationPage extends AppCompatActivity {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if(task.isSuccessful()){
+//                                                                    progressDialog.show();
                                                                     Intent intent = new Intent(RegistrationPage.this,HomePage.class);
                                                                     startActivity(intent);
                                                                     finish();
@@ -140,6 +150,7 @@ public class RegistrationPage extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
+//                                                progressDialog.show();
                                                 Intent intent = new Intent(RegistrationPage.this,HomePage.class);
                                                 startActivity(intent);
                                                 finish();

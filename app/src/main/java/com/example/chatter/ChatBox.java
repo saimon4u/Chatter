@@ -135,4 +135,16 @@ public class ChatBox extends AppCompatActivity{
             }
         });
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Chatter.setAppForeground(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Chatter.setAppForeground(true);
+    }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class HomePage extends AppCompatActivity {
     private ArrayList<User> userArrayList;
     private DatabaseReference statusReference;
     private ChatsAdapter chatsAdapter;
+    private boolean s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,19 +136,27 @@ public class HomePage extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onPause() {
         super.onPause();
-        statusReference.child("currentStatus").setValue("offline");
-        Date date = new Date();
-        statusReference.child("lastSeen").setValue(date.getTime());
+        Chatter.setAppForeground(false);
+//        if(!Chatter.isAppForeground()){
+//            statusReference.child("currentStatus").setValue("offline");
+//            Date date = new Date();
+//            statusReference.child("lastSeen").setValue(date.getTime());
+//        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        statusReference.child("currentStatus").setValue("online");
-        Date date = new Date();
-        statusReference.child("lastSeen").setValue(date.getTime());
+        Chatter.setAppForeground(true);
+//        if(Chatter.isAppForeground()) {
+//            statusReference.child("currentStatus").setValue("online");
+//            Date date = new Date();
+//            statusReference.child("lastSeen").setValue(date.getTime());
+//        }
     }
 }
